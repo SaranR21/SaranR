@@ -12,8 +12,10 @@ def convolution(x,h_0):
     y = np.zeros(len(x)+len(h_0)-1)
     for i in range(len(x)+len(h_0)-1):
         for j in range(i+1):
-            if j < len(x) and i- j < len(h_0):
+            try:
                 y[i] += x[j]*h_0[i-j]
+            except IndexError:
+                y[i] += 0
     return y
     
 def shift(x,a):
